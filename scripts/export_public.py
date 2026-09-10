@@ -4,7 +4,7 @@ from pathlib import Path
 import shutil
 
 ROOT_FILES = (
-    ".gitignore", ".env.example", ".python-version", "README.md", "LICENSE",
+    ".gitignore", ".env.example", ".python-version", "README.md", "README.zh-CN.md", "LICENSE",
     "CONTRIBUTING.md", "SECURITY.md", "CHANGELOG.md", "pyproject.toml", "uv.lock",
 )
 SCRIPT_FILES = ("scripts/export_public.py", "scripts/verify_public.py")
