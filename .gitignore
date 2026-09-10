@@ -1,0 +1,29 @@
+# Private research and historical material (not part of public releases)
+/docs/
+/CONTEXT.md
+/experiments/
+/prototype/
+/scripts/verify_preview.py
+
+# Local credentials and runtime state
+.env
+.env.*
+!.env.example
+.nervus/
+
+# Python environments and generated files
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Editor and OS files
+.DS_Store

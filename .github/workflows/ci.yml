@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.12.3"
+          python-version: "3.14"
+          enable-cache: false
+      # Tool installation and dependency preparation can access the network.
+      # No API secrets are passed to this job. UV_OFFLINE is not a sandbox.
+      - name: Prepare locked environment and build backend
+        run: uv sync --locked
+      - name: Formal and Host tests (baseline 102)
+        env:
+          UV_OFFLINE: "true"
+        run: uv run --locked python -m unittest discover -s tests -t . -v
+      - name: Build wheel and sdist
+        env:
+          UV_OFFLINE: "true"
+        run: uv build
